@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, TouchableHighlight, TouchableOpacity, View } from 'react-native'
+import { ActivityIndicator, Button, StyleSheet, Text, TouchableHighlight, TouchableOpacity, View } from 'react-native'
 
 const ResponsiveLayout = () => {
     const [active, setActive] = useState(1);
@@ -73,7 +73,7 @@ const ResponsiveLayout = () => {
 
 
             <View style={styles.box3}>
-
+                    <LoadingIndicator/>
             </View>
         </View>
     )
@@ -154,6 +154,8 @@ const styles = StyleSheet.create({
     box3: {
         flex: 1,
         backgroundColor: "green",
+        justifyContent: "center",
+        alignItems: "center"
     },
     innerBox1: {
         flex: 2,
@@ -192,5 +194,24 @@ const styles = StyleSheet.create({
         backgroundColor: "orange"
     }
 })
+
+
+const LoadingIndicator = () =>{
+    const [showLoading, setShowLoading] = useState(false);
+
+    const DisplayLoading = () =>{
+        setShowLoading(true);
+        setTimeout(() =>{
+            setShowLoading(false)
+        }, 5000)
+    }
+
+    return (
+        <View>
+            <ActivityIndicator size={30} color="ghostwhite" animating={showLoading} />
+            <Button title='Show Loading' onPress={DisplayLoading}/>
+        </View>
+    )
+}
 
 export default ResponsiveLayout
