@@ -3,6 +3,7 @@ import { ScrollView, View, Text, StyleSheet } from 'react-native'
 import Mounted from './src/components/Mounted'
 import ResponsiveLayout from './src/components/ResponsiveLayout'
 import Dialog from './src/components/Dialog'
+import Press from './src/components/Press'
 
 const App = () => {
   return (
@@ -15,8 +16,10 @@ const App = () => {
 
       {/* <ResponsiveLayout/> */}
 
-      
-      <Dialog />
+
+      {/* <Dialog /> */}
+
+      <Press />
     </View>
   )
 }
