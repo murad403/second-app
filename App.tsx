@@ -1,14 +1,18 @@
 import React from 'react'
-import { ScrollView, View, Text, StyleSheet } from 'react-native'
-import Mounted from './src/components/Mounted'
+import { Platform, ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native'
 import ResponsiveLayout from './src/components/ResponsiveLayout'
-import Dialog from './src/components/Dialog'
-import Press from './src/components/Press'
-import StaBar from './src/components/StaBar'
+import WebsiteShow from './src/components/WebsiteShow'
+
 
 const App = () => {
+  const statusBarHeight = Platform.OS === 'android' ? StatusBar.currentHeight ?? 0 : 0
+
   return (
-    <View style={{ flex: 1 }}>
+    <View style={styles.container}>
+      <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
+      <View style={[styles.statusBarArea, { height: statusBarHeight }]} />
+
+      <ScrollView style={styles.scrollView} contentContainerStyle={styles.content}>
       {/* <View>
         <Text style={{color: "red"}}>React Native</Text>
       </View>
@@ -22,10 +26,28 @@ const App = () => {
 
       {/* <Press /> */}
 
-      <StaBar/>
+      {/* <WebsiteShow/> */}
+      
+      </ScrollView>
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'black ',
+  },
+  statusBarArea: {
+    backgroundColor: '#61dafb',
+  },
+  scrollView: {
+    flex: 1,
+  },
+  content: {
+    flexGrow: 1,
+  },
+})
 
 
 export default App
