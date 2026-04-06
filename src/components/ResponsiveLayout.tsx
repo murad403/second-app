@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { ActivityIndicator, Button, StyleSheet, Text, TouchableHighlight, TouchableOpacity, View } from 'react-native'
 
-const ResponsiveLayout = () => {
+const ResponsiveLayout = (props) => {
     const [active, setActive] = useState(1);
     const [radioActive, setRadioActive] = useState(2);
 
@@ -17,8 +17,8 @@ const ResponsiveLayout = () => {
         <View style={styles.mainBox}>
             <View style={styles.box1}>
                 <View style={styles.innerBox1}>
-                    <TouchableHighlight>
-                        <Text style={styles.button}>Button</Text>
+                    <TouchableHighlight onPress={() => props.navigation.navigate("Login")}>
+                        <Text style={styles.button}>Go to Login</Text>
                     </TouchableHighlight>
                     <TouchableHighlight>
                         <Text style={[styles.button, styles.primary]}>Primary</Text>

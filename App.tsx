@@ -1,7 +1,11 @@
 import React from 'react'
-import { Platform, ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native'
+import { Platform, StatusBar, StyleSheet, View } from 'react-native'
 import ResponsiveLayout from './src/components/ResponsiveLayout'
-import WebsiteShow from './src/components/WebsiteShow'
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import Login from './src/components/Login'
+
+const Stack = createNativeStackNavigator()
 
 
 const App = () => {
@@ -12,23 +16,12 @@ const App = () => {
       <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
       <View style={[styles.statusBarArea, { height: statusBarHeight }]} />
 
-      <ScrollView style={styles.scrollView} contentContainerStyle={styles.content}>
-      {/* <View>
-        <Text style={{color: "red"}}>React Native</Text>
-      </View>
-
-      <Mounted/> */}
-
-      {/* <ResponsiveLayout/> */}
-
-
-      {/* <Dialog /> */}
-
-      {/* <Press /> */}
-
-      {/* <WebsiteShow/> */}
-      
-      </ScrollView>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName='Login'>
+          <Stack.Screen name="Home" component={ResponsiveLayout} />
+          <Stack.Screen name="Login" component={Login} />
+        </Stack.Navigator>
+      </NavigationContainer>
     </View>
   )
 }
@@ -36,16 +29,10 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'black ',
+    backgroundColor: 'black',
   },
   statusBarArea: {
     backgroundColor: '#61dafb',
-  },
-  scrollView: {
-    flex: 1,
-  },
-  content: {
-    flexGrow: 1,
   },
 })
 
