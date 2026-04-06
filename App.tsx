@@ -4,6 +4,7 @@ import Mounted from './src/components/Mounted'
 import ResponsiveLayout from './src/components/ResponsiveLayout'
 import Dialog from './src/components/Dialog'
 import Press from './src/components/Press'
+import StaBar from './src/components/StaBar'
 
 const App = () => {
   return (
@@ -20,6 +21,8 @@ const App = () => {
       {/* <Dialog /> */}
 
       {/* <Press /> */}
+
+      <StaBar/>
     </View>
   )
 }

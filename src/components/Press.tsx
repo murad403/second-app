@@ -5,6 +5,7 @@ const Press = () => {
   return (
     <View style={styles.container}>
       <Pressable 
+      delayLongPress={1000}
         onPress={() => console.warn("Onpress")}
         onPressIn={() => console.warn("Onpressin")}
         onPressOut={() => console.warn("Onpressout")}
