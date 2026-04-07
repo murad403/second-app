@@ -1,8 +1,39 @@
 import React, { useEffect, useState } from 'react'
 import { FlatList, Text, View } from 'react-native'
 
+export interface Root {
+  id: number
+  name: string
+  username: string
+  email: string
+  address: Address
+  phone: string
+  website: string
+  company: Company
+}
+
+export interface Address {
+  street: string
+  suite: string
+  city: string
+  zipcode: string
+  geo: Geo
+}
+
+export interface Geo {
+  lat: string
+  lng: string
+}
+
+export interface Company {
+  name: string
+  catchPhrase: string
+  bs: string
+}
+
+
 const Users = () => {
-    const [users, setUsers] = useState([]);
+    const [users, setUsers] = useState<Root[]>([]);
     useEffect(() => {
         fetch("https://jsonplaceholder.typicode.com/users")
             .then(res => res.json())
@@ -20,7 +51,7 @@ const Users = () => {
                         <Text style={{fontSize: 16}}>Address: {item.address?.street}, {item.address?.city}</Text>
                     </View>
                 )}
-                keyExtractor={item => item.id}
+                keyExtractor={item => item.id.toString()}
             />
         </View>
     )
