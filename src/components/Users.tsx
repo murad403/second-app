@@ -40,8 +40,8 @@ const Users = () => {
             .then(data => setUsers(data))
     }, [])
     return (
-        <View>
-            <Text>Users: {users.length}</Text>
+        <View style={{padding: 10}}>
+            <Text style={{fontSize: 24, fontWeight: "bold"}}>Users: {users.length}</Text>
             <FlatList
                 data={users}
                 renderItem={({ item }) => (
