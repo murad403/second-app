@@ -7,6 +7,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './src/components/Home'
 import Register from './src/components/Register'
 import Icon from 'react-native-vector-icons/Ionicons'
+import Login from './src/components/Login';
+import Users from './src/components/Users';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -63,6 +65,22 @@ const App = () => {
             }}
           />
           <Tab.Screen
+            name='Users'
+            component={Users}
+            options={{
+              tabBarIcon: ({ color, size, focused }) => (
+                <Icon
+                  name={focused ? 'users' : 'users-outline'}
+                  size={size}
+                  color={color}
+                />
+              ),
+              tabBarActiveTintColor: 'aqua',
+              tabBarInactiveTintColor: 'gray',
+              tabBarStyle: { backgroundColor: 'black' }
+            }}
+          />
+          <Tab.Screen
             name='Register'
             component={Register}
             options={{
@@ -79,6 +97,22 @@ const App = () => {
             }}
           />
 
+          <Tab.Screen
+            name='Login'
+            component={Login}
+            options={{
+              tabBarIcon: ({ color, size, focused }) => (
+                <Icon
+                  name={focused ? 'log-in' : 'log-in-outline'}
+                  size={size}
+                  color={color}
+                />
+              ),
+              tabBarActiveTintColor: 'aqua',
+              tabBarInactiveTintColor: 'gray',
+              tabBarStyle: { backgroundColor: 'black' }
+            }}
+          />
 
         </Tab.Navigator>
       </NavigationContainer>
