@@ -30,7 +30,9 @@ const App = () => {
             title: "Home Screen",
             headerTitle: () => <Button title='Left'/>,
             headerRight: () => <Button title='Right'/>
-            }}/>
+            }}
+          
+            />
           <Stack.Screen name="Login" component={Login} options={{title: "Login Screen"}}/>
         </Stack.Navigator>
       </NavigationContainer>
