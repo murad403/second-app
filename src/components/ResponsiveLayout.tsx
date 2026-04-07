@@ -1,9 +1,11 @@
+import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react'
 import { ActivityIndicator, Button, StyleSheet, Text, TouchableHighlight, TouchableOpacity, View } from 'react-native'
 
-const ResponsiveLayout = (props) => {
+const ResponsiveLayout = () => {
     const [active, setActive] = useState(1);
     const [radioActive, setRadioActive] = useState(2);
+    const navigation = useNavigation();
 
     const radioButtonList = [
         { id: 2, label: "css" },
@@ -17,7 +19,7 @@ const ResponsiveLayout = (props) => {
         <View style={styles.mainBox}>
             <View style={styles.box1}>
                 <View style={styles.innerBox1}>
-                    <TouchableHighlight onPress={() => props.navigation.navigate("Login")}>
+                    <TouchableHighlight onPress={() => navigation.navigate('Login')}>
                         <Text style={styles.button}>Go to Login</Text>
                     </TouchableHighlight>
                     <TouchableHighlight>

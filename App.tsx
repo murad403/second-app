@@ -1,5 +1,5 @@
 import React from 'react'
-import { Platform, StatusBar, StyleSheet, View } from 'react-native'
+import { Button, Platform, StatusBar, StyleSheet, View } from 'react-native'
 import ResponsiveLayout from './src/components/ResponsiveLayout'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
@@ -17,14 +17,29 @@ const App = () => {
       <View style={[styles.statusBarArea, { height: statusBarHeight }]} />
 
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='Login'>
-          <Stack.Screen name="Home" component={ResponsiveLayout} />
-          <Stack.Screen name="Login" component={Login} />
+        <Stack.Navigator initialRouteName='Login' screenOptions={{
+            headerStyle: {
+              backgroundColor: "gray"
+            },
+            headerTitleStyle: {
+              color: "aqua",
+              fontSize: 23
+            },
+          }}>
+          <Stack.Screen name="Home" component={ResponsiveLayout} options={{
+            title: "Home Screen",
+            headerTitle: () => <Button title='Left'/>,
+            headerRight: () => <Button title='Right'/>
+            }}/>
+          <Stack.Screen name="Login" component={Login} options={{title: "Login Screen"}}/>
         </Stack.Navigator>
       </NavigationContainer>
     </View>
   )
 }
+
+
+
 
 const styles = StyleSheet.create({
   container: {
