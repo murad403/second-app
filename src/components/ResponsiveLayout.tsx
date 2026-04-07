@@ -2,10 +2,10 @@ import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react'
 import { ActivityIndicator, Button, StyleSheet, Text, TouchableHighlight, TouchableOpacity, View } from 'react-native'
 
-const ResponsiveLayout = (props) => {
+const ResponsiveLayout = (props: any) => {
     const [active, setActive] = useState(1);
     const [radioActive, setRadioActive] = useState(2);
-    const navigation = useNavigation();
+    const navigation = useNavigation<any>();
     const {name, email} = props.route.params;
 
     const radioButtonList = [
@@ -35,14 +35,14 @@ const ResponsiveLayout = (props) => {
                     <TouchableHighlight>
                         <Text style={[styles.button, styles.warning]}>Warning</Text>
                     </TouchableHighlight>
-                    <Text style={{color: 'white', fontSize: 18}}>Name: {name}</Text>
-                    <Text style={{color: 'white', fontSize: 18}}>Email: {email}</Text>
+                    <Text style={styles.userInfoText}>Name: {name}</Text>
+                    <Text style={styles.userInfoText}>Email: {email}</Text>
                 </View>
                 <View style={styles.innerBox2}>
                     <TouchableOpacity onPress={() => setActive(1)} style={radioButtonStyle.radioButton}>
                         <View style={radioButtonStyle.radio}>
                             {
-                                active === 1 && <View style={radioButtonStyle.radioActive}></View>
+                                active === 1 && <View style={radioButtonStyle.radioActive} />
                             }
                         </View>
                         <Text style={radioButtonStyle.radioText}>Radio 1</Text>
@@ -50,7 +50,7 @@ const ResponsiveLayout = (props) => {
                     <TouchableOpacity onPress={() => setActive(2)} style={radioButtonStyle.radioButton}>
                         <View style={radioButtonStyle.radio}>
                             {
-                                active === 2 && <View style={radioButtonStyle.radioActive}></View>
+                                active === 2 && <View style={radioButtonStyle.radioActive} />
                             }
                         </View>
                         <Text style={radioButtonStyle.radioText}>Radio 2</Text>
@@ -60,13 +60,13 @@ const ResponsiveLayout = (props) => {
 
             {/* dynamic radio button */}
             <View style={styles.box2}>
-                <View style={{marginLeft: 30, gap: 4}}>
+                <View style={styles.radioListContainer}>
                     {
                         radioButtonList.map((item) => (
                             <TouchableOpacity onPress={() => setRadioActive(item.id)} key={item.id} style={dynamicRadioButtonStyles.radio}>
                                 <View style={dynamicRadioButtonStyles.radioButton}>
                                     {
-                                        radioActive === item.id && <View style={dynamicRadioButtonStyles.radioActive}></View>
+                                        radioActive === item.id && <View style={dynamicRadioButtonStyles.radioActive} />
                                     }
                                 </View>
                                 <Text style={dynamicRadioButtonStyles.radioButtonText}>{item.label}</Text>
@@ -197,6 +197,14 @@ const styles = StyleSheet.create({
     },
     warning: {
         backgroundColor: "orange"
+    },
+    userInfoText: {
+        color: "white",
+        fontSize: 18
+    },
+    radioListContainer: {
+        marginLeft: 30,
+        gap: 4
     }
 })
 

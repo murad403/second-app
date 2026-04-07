@@ -4,7 +4,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native'
 
 const Login = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
   const {control, handleSubmit, reset} = useForm();
 
   const onSubmit = (data: any) =>{
@@ -13,7 +13,7 @@ const Login = () => {
   }
 
   return (
-    <View style={{gap: 5, padding: 20}}>
+    <View style={styles.container}>
       <Text>Login Screen</Text>
       <Controller
         control={control}
@@ -35,6 +35,10 @@ const Login = () => {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    gap: 5,
+    padding: 20,
+  },
   inputBox: {
     borderWidth: 2,
     borderColor: "red",

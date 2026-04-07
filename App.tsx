@@ -1,11 +1,12 @@
 import React from 'react'
-import { Button, Platform, StatusBar, StyleSheet, View } from 'react-native'
-import ResponsiveLayout from './src/components/ResponsiveLayout'
+import { Platform, StatusBar, StyleSheet, View } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import Login from './src/components/Login'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import Home from './src/components/Home'
+import Register from './src/components/Register'
+import Icon from 'react-native-vector-icons/Ionicons'
 
-const Stack = createNativeStackNavigator()
+const Tab = createBottomTabNavigator();
 
 
 const App = () => {
@@ -16,7 +17,8 @@ const App = () => {
       <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
       <View style={[styles.statusBarArea, { height: statusBarHeight }]} />
 
-      <NavigationContainer>
+      {/* stack navigation */}
+      {/* <NavigationContainer>
         <Stack.Navigator initialRouteName='Login' screenOptions={{
             headerStyle: {
               backgroundColor: "gray"
@@ -35,7 +37,40 @@ const App = () => {
             />
           <Stack.Screen name="Login" component={Login} options={{title: "Login Screen"}}/>
         </Stack.Navigator>
+      </NavigationContainer> */}
+
+      {/* tab navigation */}
+      <NavigationContainer>
+        <Tab.Navigator>
+          <Tab.Screen
+            name='Register'
+            component={Register}
+            options={{
+              tabBarIcon: ({ color, size, focused }) => (
+                <Icon
+                  name={focused ? 'person' : 'person-outline'}
+                  size={size}
+                  color={color}
+                />
+              ),
+              tabBarActiveTintColor: 'aqua',
+              tabBarInactiveTintColor: 'gray',
+              tabBarStyle: { backgroundColor: 'black' }
+            }}
+          />
+
+        </Tab.Navigator>
       </NavigationContainer>
+
+      {/* top tab navigation */}
+      {/* <NavigationContainer>
+          <TopTab.Navigator>
+            <TopTab.Screen name='Home' component={Home}/>
+            <TopTab.Screen name='Register' component={Register}/>
+          </TopTab.Navigator>
+        </NavigationContainer> */}
+
+
     </View>
   )
 }
