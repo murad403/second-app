@@ -2,7 +2,6 @@ import React from 'react'
 import { Platform, StatusBar, StyleSheet, View } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './src/components/Home'
 import Register from './src/components/Register'
@@ -14,7 +13,28 @@ import UserDetails from './src/components/UserDetails';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
-const TopTab = createMaterialTopTabNavigator();
+
+type TabIconProps = {
+  color: string
+  size: number
+  focused: boolean
+}
+
+const homeTabIcon = ({ color, size, focused }: TabIconProps) => (
+  <Icon name={focused ? 'home' : 'home-outline'} size={size} color={color} />
+)
+
+const usersTabIcon = ({ color, size, focused }: TabIconProps) => (
+  <Icon name={focused ? 'users' : 'users-outline'} size={size} color={color} />
+)
+
+const registerTabIcon = ({ color, size, focused }: TabIconProps) => (
+  <Icon name={focused ? 'person' : 'person-outline'} size={size} color={color} />
+)
+
+const loginTabIcon = ({ color, size, focused }: TabIconProps) => (
+  <Icon name={focused ? 'log-in' : 'log-in-outline'} size={size} color={color} />
+)
 
 const UsersStack = () => {
   return (
@@ -61,18 +81,12 @@ const App = () => {
 
       {/* tab navigation */}
       <NavigationContainer>
-        <Tab.Navigator initialRouteName='Users'>
+        <Tab.Navigator initialRouteName='Home'>
           <Tab.Screen
             name='Home'
             component={Home}
             options={{
-              tabBarIcon: ({ color, size, focused }) => (
-                <Icon
-                  name={focused ? 'home' : 'home-outline'}
-                  size={size}
-                  color={color}
-                />
-              ),
+              tabBarIcon: homeTabIcon,
               tabBarActiveTintColor: 'aqua',
               tabBarInactiveTintColor: 'gray',
               tabBarStyle: { backgroundColor: 'black' }
@@ -82,13 +96,7 @@ const App = () => {
             name='Users'
             component={UsersStack}
             options={{
-              tabBarIcon: ({ color, size, focused }) => (
-                <Icon
-                  name={focused ? 'users' : 'users-outline'}
-                  size={size}
-                  color={color}
-                />
-              ),
+              tabBarIcon: usersTabIcon,
               tabBarActiveTintColor: 'aqua',
               tabBarInactiveTintColor: 'gray',
               tabBarStyle: { backgroundColor: 'black' }
@@ -98,13 +106,7 @@ const App = () => {
             name='Register'
             component={Register}
             options={{
-              tabBarIcon: ({ color, size, focused }) => (
-                <Icon
-                  name={focused ? 'person' : 'person-outline'}
-                  size={size}
-                  color={color}
-                />
-              ),
+              tabBarIcon: registerTabIcon,
               tabBarActiveTintColor: 'aqua',
               tabBarInactiveTintColor: 'gray',
               tabBarStyle: { backgroundColor: 'black' }
@@ -115,13 +117,7 @@ const App = () => {
             name='Login'
             component={Login}
             options={{
-              tabBarIcon: ({ color, size, focused }) => (
-                <Icon
-                  name={focused ? 'log-in' : 'log-in-outline'}
-                  size={size}
-                  color={color}
-                />
-              ),
+              tabBarIcon: loginTabIcon,
               tabBarActiveTintColor: 'aqua',
               tabBarInactiveTintColor: 'gray',
               tabBarStyle: { backgroundColor: 'black' }

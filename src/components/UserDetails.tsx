@@ -2,9 +2,15 @@ import { useRoute } from '@react-navigation/native'
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 
+type UserDetailsData = {
+    name?: string
+    email?: string
+    phone?: string
+}
+
 const UserDetails = () => {
     const { id } = useRoute().params as { id: string };
-    const [userDetails, setUserDetails] = useState({});
+    const [userDetails, setUserDetails] = useState<UserDetailsData | null>(null);
 
     useEffect(() => {
         fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
@@ -21,6 +27,7 @@ const UserDetails = () => {
                     <Text style={styles.text}>Phone: {userDetails.phone}</Text>
                 </View>
             )}
+
         </View>
     )
 }
