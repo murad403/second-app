@@ -9,11 +9,21 @@ import Register from './src/components/Register'
 import Icon from 'react-native-vector-icons/Ionicons'
 import Login from './src/components/Login';
 import Users from './src/components/Users';
+import UserDetails from './src/components/UserDetails';
 
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 const TopTab = createMaterialTopTabNavigator();
+
+const UsersStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Users" component={Users} options={{headerShown: false}}/>
+      <Stack.Screen name="UserDetails" component={UserDetails} />
+    </Stack.Navigator>
+  )
+}
 
 
 const App = () => {
@@ -46,9 +56,12 @@ const App = () => {
         </Stack.Navigator>
       </NavigationContainer> */}
 
+
+
+
       {/* tab navigation */}
       <NavigationContainer>
-        <Tab.Navigator>
+        <Tab.Navigator initialRouteName='Users'>
           <Tab.Screen
             name='Home'
             component={Home}
@@ -67,7 +80,7 @@ const App = () => {
           />
           <Tab.Screen
             name='Users'
-            component={Users}
+            component={UsersStack}
             options={{
               tabBarIcon: ({ color, size, focused }) => (
                 <Icon
@@ -114,9 +127,9 @@ const App = () => {
               tabBarStyle: { backgroundColor: 'black' }
             }}
           />
-
         </Tab.Navigator>
       </NavigationContainer>
+
 
       {/* top tab navigation */}
       {/* <NavigationContainer>

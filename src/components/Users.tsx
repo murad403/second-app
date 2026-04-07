@@ -1,5 +1,6 @@
+import { useNavigation } from '@react-navigation/native'
 import React, { useEffect, useState } from 'react'
-import { FlatList, Text, View } from 'react-native'
+import { Button, FlatList, Text, View } from 'react-native'
 
 export interface Root {
   id: number
@@ -33,12 +34,17 @@ export interface Company {
 
 
 const Users = () => {
+    const navigation = useNavigation();
     const [users, setUsers] = useState<Root[]>([]);
     useEffect(() => {
         fetch("https://jsonplaceholder.typicode.com/users")
             .then(res => res.json())
             .then(data => setUsers(data))
     }, [])
+
+    const goToDetailsPage = (id: string) =>{
+        navigation.navigate('UserDetails', { id })
+    }
     return (
         <View style={{padding: 10}}>
             <Text style={{fontSize: 24, fontWeight: "bold"}}>Users: {users.length}</Text>
@@ -49,6 +55,7 @@ const Users = () => {
                         <Text style={{fontWeight: "semibold", fontSize: 18}}>Name: {item.name}</Text>
                         <Text style={{fontSize: 16}}>Email: {item.email}</Text>
                         <Text style={{fontSize: 16}}>Address: {item.address?.street}, {item.address?.city}</Text>
+                        <Button title='View Details' onPress={() => goToDetailsPage(item?.id)}/>
                     </View>
                 )}
                 keyExtractor={item => item.id.toString()}
