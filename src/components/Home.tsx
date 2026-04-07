@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, TouchableHighlight, View, StyleSheet } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 
 const Home = () => {
   return (
@@ -9,9 +10,14 @@ const Home = () => {
         underlayColor="#00ced1"
         style={styles.button}
       >
-        <View style={styles.gradient}>
+        <LinearGradient
+          colors={['#00ffff', '#7fffd4']}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+          style={styles.gradient}
+        >
           <Text style={styles.text}>Gradient Button</Text>
-        </View>
+        </LinearGradient>
       </TouchableHighlight>
     </View>
   );
@@ -31,7 +37,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 25,
     borderRadius: 10,
     alignItems: 'center',
-    backgroundColor: '#00bcd4',
   },
   text: {
     color: '#fff',
