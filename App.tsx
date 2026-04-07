@@ -2,11 +2,15 @@ import React from 'react'
 import { Platform, StatusBar, StyleSheet, View } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './src/components/Home'
 import Register from './src/components/Register'
 import Icon from 'react-native-vector-icons/Ionicons'
 
 const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
+const TopTab = createMaterialTopTabNavigator();
 
 
 const App = () => {
@@ -43,6 +47,22 @@ const App = () => {
       <NavigationContainer>
         <Tab.Navigator>
           <Tab.Screen
+            name='Home'
+            component={Home}
+            options={{
+              tabBarIcon: ({ color, size, focused }) => (
+                <Icon
+                  name={focused ? 'home' : 'home-outline'}
+                  size={size}
+                  color={color}
+                />
+              ),
+              tabBarActiveTintColor: 'aqua',
+              tabBarInactiveTintColor: 'gray',
+              tabBarStyle: { backgroundColor: 'black' }
+            }}
+          />
+          <Tab.Screen
             name='Register'
             component={Register}
             options={{
@@ -58,6 +78,7 @@ const App = () => {
               tabBarStyle: { backgroundColor: 'black' }
             }}
           />
+
 
         </Tab.Navigator>
       </NavigationContainer>
